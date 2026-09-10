@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inference Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        .container { max-width: 800px; margin: auto; }
+        .result-section { margin-bottom: 1.5em; }
+        h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.3em; }
+        pre { background: #f4f4f4; padding: 1em; }
+        video { width: 100%; max-width: 600px; display: block; margin-top: 1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Inference Results</h1>
+        
+        <div class="result-section">
+            <h2>Predictions</h2>
+            <p><strong>Text Only:</strong> {{ pred_text }}</p>
+            <p><strong>Image Only:</strong> {{ pred_image }}</p>
+            <p><strong>Combined (Text + Image):</strong> {{ pred_both }}</p>
+            <p><strong>Video Only:</strong> {{ pred_video }}</p>
+            {% if video_frame_preds %}
+            <p><strong>Video Frame Predictions:</strong> {{ video_frame_preds }}</p>
+            {% endif %}
+        </div>
+        
+        <div class="result-section">
+            <h2>AI-Generated Report</h2>
+            <pre>{{ ai_report }}</pre>
+        </div>
+        
+        {% if video_url %}
+        <div class="result-section" id="video_section">
+            <h2>Processed Video with Detections</h2>
+            <video id="processed_video" controls>
+                <source src="{{ video_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        {% endif %}
+        
+        <a href="{{ url_for('index') }}">← Back to Home</a>
+    </div>
+
+    <script>
+        // Attempt to auto-play the processed video on page load if available
+        window.addEventListener('load', function(){
+            var videoElem = document.getElementById("processed_video");
+            if(videoElem) {
+                videoElem.play().catch(function(error) {
+                    console.log("Auto-play prevented. Please use the video controls to play.");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-gray-900 text-white">
+    <div class="w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-center text-blue-400 mb-6">Register</h2>
+
+        <form method="POST" action="{{ url_for('register') }}" class="space-y-4">
+            <div>
+                <label for="username" class="block font-medium">Username</label>
+                <div class="relative">
+                    <i class="bi bi-person-fill absolute left-3 top-3 text-gray-400"></i>
+                    <input type="text" id="username" name="username" required 
+                        class="w-full p-3 pl-10 border border-gray-600 bg-gray-700 rounded-md focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+
+            <div>
+                <label for="email" class="block font-medium">Email</label>
+                <div class="relative">
+                    <i class="bi bi-envelope-fill absolute left-3 top-3 text-gray-400"></i>
+                    <input type="email" id="email" name="email" required 
+                        class="w-full p-3 pl-10 border border-gray-600 bg-gray-700 rounded-md focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+
+            <div>
+                <label for="full_name" class="block font-medium">Full Name</label>
+                <div class="relative">
+                    <i class="bi bi-person-vcard-fill absolute left-3 top-3 text-gray-400"></i>
+                    <input type="text" id="full_name" name="full_name" 
+                        class="w-full p-3 pl-10 border border-gray-600 bg-gray-700 rounded-md focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+
+            <div>
+                <label for="password" class="block font-medium">Password</label>
+                <div class="relative">
+                    <i class="bi bi-lock-fill absolute left-3 top-3 text-gray-400"></i>
+                    <input type="password" id="password" name="password" required 
+                        class="w-full p-3 pl-10 border border-gray-600 bg-gray-700 rounded-md focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+
+            <button type="submit" 
+                class="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition flex items-center justify-center gap-2">
+                <i class="bi bi-person-plus-fill"></i> Register
+            </button>
+        </form>
+
+        <p class="mt-4 text-center text-gray-400">
+            Already have an account? 
+            <a href="{{ url_for('login') }}" class="text-blue-400 hover:underline">Login here</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

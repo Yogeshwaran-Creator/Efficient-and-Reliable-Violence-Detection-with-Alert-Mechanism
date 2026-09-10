@@ -1,0 +1,863 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Multimodal Analysis</h2>
+    
+    <!-- Analysis Form -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <form id="analysisForm" method="POST" enctype="multipart/form-data" class="space-y-4">
+            <!-- Text Input -->
+            <div>
+                <label for="text_input" class="block text-sm font-medium text-gray-700 mb-1">Text Input</label>
+                <textarea id="text_input" name="text_input" rows="4" 
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Enter text to analyze...">{{ sample_text if sample_text }}</textarea>
+            </div>
+            
+            <!-- File Upload Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Image Upload -->
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-400 transition-colors relative">
+                    <label for="image_input" class="cursor-pointer">
+                        <i class="bi bi-image text-4xl text-blue-500 mb-2"></i>
+                        <p class="font-medium text-gray-700">Upload Image</p>
+                        <p class="text-sm text-gray-500">JPG, PNG (Max 5MB)</p>
+                        <input type="file" id="image_input" name="image_input" accept="image/*" class="hidden">
+                    </label>
+                    <div id="image-preview" class="hidden mt-2">
+                        <img id="image-preview-img" src="#" alt="Preview" class="max-h-32 mx-auto rounded">
+                        <button type="button" id="remove-image" class="mt-2 text-red-500 text-sm">
+                            <i class="bi bi-trash"></i> Remove
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Video Upload -->
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-400 transition-colors relative">
+                    <label for="video_input" class="cursor-pointer">
+                        <i class="bi bi-camera-video text-4xl text-blue-500 mb-2"></i>
+                        <p class="font-medium text-gray-700">Upload Video</p>
+                        <p class="text-sm text-gray-500">MP4, MOV (Max 50MB)</p>
+                        <input type="file" id="video_input" name="video_input" accept="video/*" class="hidden">
+                    </label>
+                    <div id="video-preview" class="hidden mt-2">
+                        <video id="video-preview-player" controls class="max-h-32 mx-auto rounded" style="display:none;"></video>
+                        <div id="video-info" class="text-sm text-gray-600"></div>
+                        <button type="button" id="remove-video" class="mt-2 text-red-500 text-sm">
+                            <i class="bi bi-trash"></i> Remove
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button type="submit" id="analyze-btn"
+                    class="flex-1 px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                    <i class="bi bi-play-fill mr-2"></i> Analyze Content
+                </button>
+                <button type="button" id="clear-btn"
+                    class="flex-1 px-6 py-3 bg-gray-200 text-gray-700 font-medium rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors">
+                    <i class="bi bi-x-circle mr-2"></i> Clear All
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-indicator" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-xl text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <p class="text-lg font-medium text-gray-800">Analyzing content...</p>
+            <p class="text-sm text-gray-600" id="progress-text">Processing your inputs</p>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section">
+        {% if pred_text or pred_image or pred_both or pred_video %}
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Analysis Results</h3>
+            
+            <!-- Text Results -->
+            {% if pred_text %}
+            <div class="mb-6 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                <div class="flex items-center mb-3">
+                    <i class="bi bi-file-text text-2xl text-blue-500 mr-3"></i>
+                    <h4 class="text-lg font-medium text-gray-800">Text Analysis</h4>
+                </div>
+                <div class="ml-9">
+                    <p class="text-gray-600"><span class="font-semibold">Prediction:</span> 
+                        <span class="inline-block px-2 py-1 rounded 
+                            {% if pred_text in ['fight', 'weapon', 'fire'] %}bg-red-100 text-red-800
+                            {% elif pred_text == 'suspicious_activity' %}bg-yellow-100 text-yellow-800
+                            {% else %}bg-blue-100 text-blue-800{% endif %}">
+                            {{ pred_text|replace('_', ' ')|title }}
+                        </span>
+                    </p>
+                    {% if sample_text %}
+                    <div class="mt-3 p-3 bg-gray-50 rounded border border-gray-200">
+                        <p class="text-gray-700">{{ sample_text }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Image Results -->
+            {% if pred_image != "N/A" %}
+            <div class="mb-6 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                <div class="flex items-center mb-3">
+                    <i class="bi bi-image text-2xl text-green-500 mr-3"></i>
+                    <h4 class="text-lg font-medium text-gray-800">Image Analysis</h4>
+                </div>
+                <div class="ml-9">
+                    <p class="text-gray-600"><span class="font-semibold">Prediction:</span> 
+                        <span class="inline-block px-2 py-1 rounded 
+                            {% if pred_image in ['fight', 'weapon', 'fire'] %}bg-red-100 text-red-800
+                            {% elif pred_image == 'suspicious_activity' %}bg-yellow-100 text-yellow-800
+                            {% else %}bg-blue-100 text-blue-800{% endif %}">
+                            {{ pred_image|replace('_', ' ')|title }}
+                        </span>
+                    </p>
+                    {% if image_path %}
+                    <div class="mt-3">
+                        <img src="{{ url_for('static', filename=image_path) }}" alt="Analyzed Image" class="rounded-lg max-h-64">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Combined Results -->
+            {% if pred_both != "N/A" %}
+            <div class="mb-6 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                <div class="flex items-center mb-3">
+                    <i class="bi bi-collection text-2xl text-purple-500 mr-3"></i>
+                    <h4 class="text-lg font-medium text-gray-800">Combined Analysis</h4>
+                </div>
+                <div class="ml-9">
+                    <p class="text-gray-600"><span class="font-semibold">Prediction:</span> 
+                        <span class="inline-block px-2 py-1 rounded 
+                            {% if pred_both in ['fight', 'weapon', 'fire'] %}bg-red-100 text-red-800
+                            {% elif pred_both == 'suspicious_activity' %}bg-yellow-100 text-yellow-800
+                            {% else %}bg-blue-100 text-blue-800{% endif %}">
+                            {{ pred_both|replace('_', ' ')|title }}
+                        </span>
+                    </p>
+                    <p class="text-gray-500 text-sm mt-1">(Text + Image analysis combined)</p>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Video Results -->
+            {% if pred_video != "N/A" %}
+            <div class="mb-6 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center">
+                        <i class="bi bi-camera-video text-2xl text-purple-500 mr-3"></i>
+                        <h4 class="text-lg font-medium text-gray-800">Video Analysis</h4>
+                    </div>
+                    {% if video_url %}
+                    <a href="{{ url_for('static', filename=video_url) }}" download 
+                       class="flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                        <i class="bi bi-download mr-1"></i> Download Video
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="ml-9">
+                    <p class="text-gray-600"><span class="font-semibold">Prediction:</span> 
+                        <span class="inline-block px-2 py-1 rounded 
+                            {% if pred_video in ['fight', 'weapon', 'fire'] %}bg-red-100 text-red-800
+                            {% elif pred_video == 'suspicious_activity' %}bg-yellow-100 text-yellow-800
+                            {% else %}bg-blue-100 text-blue-800{% endif %}">
+                            {{ pred_video|replace('_', ' ')|title }}
+                        </span>
+                    </p>
+                    
+                    <div class="mt-3">
+                        <p class="text-sm text-gray-500 mb-2"><span class="font-medium">Frame Predictions:</span> 
+                            {% for pred in video_frame_preds %}
+                            <span class="inline-block px-1.5 py-0.5 text-xs rounded 
+                                {% if pred in ['fight', 'weapon', 'fire'] %}bg-red-100 text-red-800
+                                {% elif pred == 'suspicious_activity' %}bg-yellow-100 text-yellow-800
+                                {% else %}bg-blue-100 text-blue-800{% endif %}">
+                                {{ pred|replace('_', ' ')|title }}
+                            </span>
+                            {% endfor %}
+                        </p>
+                        
+                       
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- AI Report -->
+            {% if ai_report %}
+            <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                <div class="flex items-center mb-3">
+                    <i class="bi bi-robot text-2xl text-blue-500 mr-3"></i>
+                    <h4 class="text-lg font-medium text-gray-800">AI Analysis Report</h4>
+                </div>
+                <div class="ml-9 bg-white p-4 rounded border border-gray-200">
+                    <p class="text-gray-700 whitespace-pre-line">{{ ai_report }}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Video Player Script -->
+<script>
+    // Helper functions (global scope)
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function formatDuration(seconds) {
+        if (!seconds || isNaN(seconds)) return '0:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize video player
+        function initVideoPlayer() {
+            const video = document.getElementById('result-video');
+            const placeholder = document.getElementById('video-placeholder');
+            const playButton = document.querySelector('.video-play-button');
+            const timeDisplay = document.getElementById('video-time');
+            const durationDisplay = document.getElementById('video-duration');
+            
+            if (video && placeholder && playButton) {
+                // Show play button overlay initially
+                placeholder.style.display = 'flex';
+                
+                // Format time as MM:SS
+                function formatTime(seconds) {
+                    const mins = Math.floor(seconds / 60);
+                    const secs = Math.floor(seconds % 60);
+                    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                }
+                
+                // Update time display
+                video.addEventListener('timeupdate', function() {
+                    if (timeDisplay) timeDisplay.textContent = formatTime(video.currentTime);
+                });
+                
+                // Set duration when metadata is loaded
+                video.addEventListener('loadedmetadata', function() {
+                    if (durationDisplay) durationDisplay.textContent = formatTime(video.duration);
+                });
+                
+                // Play button functionality
+                playButton.addEventListener('click', function() {
+                    video.play()
+                        .then(() => {
+                            placeholder.style.display = 'none';
+                        })
+                        .catch(error => {
+                            console.error('Error playing video:', error);
+                            alert('Error playing video. Please try again.');
+                        });
+                });
+                
+                // Show play button when video ends
+                video.addEventListener('ended', function() {
+                    placeholder.style.display = 'flex';
+                });
+                
+                // Pause shows play button
+                video.addEventListener('pause', function() {
+                    if (!video.ended) {
+                        placeholder.style.display = 'flex';
+                    }
+                });
+            }
+        }
+        
+        // Initialize the video player when page loads
+        initVideoPlayer();
+        
+        // Skip video function
+        window.skipVideo = function(seconds) {
+            const video = document.getElementById('result-video');
+            if (video) {
+                video.currentTime += seconds;
+            }
+        };
+        
+        // File preview and handling
+        const imageInput = document.getElementById('image_input');
+        const videoInput = document.getElementById('video_input');
+        const imagePreview = document.getElementById('image-preview');
+        const imagePreviewImg = document.getElementById('image-preview-img');
+        const videoPreview = document.getElementById('video-preview');
+        const videoPreviewPlayer = document.getElementById('video-preview-player');
+        const videoInfo = document.getElementById('video-info');
+        const removeImageBtn = document.getElementById('remove-image');
+        const removeVideoBtn = document.getElementById('remove-video');
+        const clearBtn = document.getElementById('clear-btn');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const progressText = document.getElementById('progress-text');
+        const analysisForm = document.getElementById('analysisForm');
+        const resultsSection = document.getElementById('results-section');
+
+        // Image preview
+        if (imageInput) {
+            imageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        imagePreviewImg.src = event.target.result;
+                        imagePreview.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        // Video preview
+        if (videoInput) {
+            videoInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    videoPreviewPlayer.src = URL.createObjectURL(file);
+                    videoPreviewPlayer.style.display = 'block';
+                    videoPreview.classList.remove('hidden');
+                    
+                    // Show video info
+                    videoInfo.textContent = `${file.name} (${formatFileSize(file.size)})`;
+                    
+                    // Load metadata for duration
+                    videoPreviewPlayer.onloadedmetadata = function() {
+                        videoInfo.textContent += ` • ${formatDuration(videoPreviewPlayer.duration)}`;
+                    };
+                }
+            });
+        }
+
+        // Remove image
+        if (removeImageBtn) {
+            removeImageBtn.addEventListener('click', function() {
+                imageInput.value = '';
+                imagePreview.classList.add('hidden');
+            });
+        }
+
+        // Remove video
+        if (removeVideoBtn) {
+            removeVideoBtn.addEventListener('click', function() {
+                videoInput.value = '';
+                videoPreview.classList.add('hidden');
+                videoPreviewPlayer.src = '';
+                videoPreviewPlayer.style.display = 'none';
+            });
+        }
+
+        // Clear all
+        if (clearBtn) {
+            clearBtn.addEventListener('click', function() {
+                if (imageInput) imageInput.value = '';
+                if (videoInput) videoInput.value = '';
+                if (imagePreview) imagePreview.classList.add('hidden');
+                if (videoPreview) videoPreview.classList.add('hidden');
+                if (videoPreviewPlayer) {
+                    videoPreviewPlayer.src = '';
+                    videoPreviewPlayer.style.display = 'none';
+                }
+                document.getElementById('text_input').value = '';
+                resultsSection.innerHTML = '';
+            });
+        }
+
+        // Format file size
+        // function moved to global scope
+        
+        // Format duration
+        // function moved to global scope
+
+        // AJAX form submission
+        if (analysisForm) {
+            analysisForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Show loading indicator
+                loadingIndicator.classList.remove('hidden');
+                analyzeBtn.disabled = true;
+                progressText.textContent = "Processing your inputs...";
+                
+                // Create FormData
+                const formData = new FormData(analysisForm);
+                
+                // Add a timeout to abort long-running requests
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
+                
+                try {
+                    // AJAX request with timeout
+                    const response = await fetch('/analyze', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        signal: controller.signal
+                    });
+                    
+                    clearTimeout(timeoutId);
+                    
+                    if (!response.ok) {
+                        // Try to get error message from response
+                        try {
+                            const data = await response.json();
+                            throw new Error(data.error || `Server error: ${response.status} ${response.statusText}`);
+                        } catch (e) {
+                            if (e instanceof SyntaxError) {
+                                throw new Error(`Server error: ${response.status} ${response.statusText}`);
+                            }
+                            throw e;
+                        }
+                    }
+                    
+                    const data = await response.json();
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    
+                    // Update progress text
+                    progressText.textContent = "Rendering results...";
+                    
+                    // Update results section
+                    updateResults(data);
+                    
+                } catch (error) {
+                    clearTimeout(timeoutId);
+                    console.error('Detailed error:', error);
+                    let errorMsg = error.message || 'An error occurred during analysis';
+                    
+                    // Check for different error types
+                    if (error.name === 'AbortError') {
+                        errorMsg = 'Request timed out (60 seconds). The server did not respond in time. Please try again.';
+                    } else if (!navigator.onLine) {
+                        errorMsg = 'Connection lost. Please check your internet connection.';
+                    } else if (error.message === 'Failed to fetch' || error.message.includes('net::')) {
+                        errorMsg = 'Server connection failed. Please ensure the server is running and try again. If the problem persists, restart the Flask server.';
+                    } else if (error.message.includes('500') || error.message.includes('Server error')) {
+                        errorMsg = 'Server error occurred. Check the server console for details.';
+                    }
+                    
+                    alert(errorMsg);
+                    console.error('Full error info:', {
+                        message: errorMsg,
+                        originalMessage: error.message,
+                        stack: error.stack,
+                        type: error.name,
+                        online: navigator.onLine
+                    });
+                } finally {
+                    clearTimeout(timeoutId);
+                    loadingIndicator.classList.add('hidden');
+                    analyzeBtn.disabled = false;
+                }
+            });
+        }
+
+        // Update results with AJAX response
+        function updateResults(data) {
+            let resultsHTML = '<div class="bg-white rounded-lg shadow-md p-6"><h3 class="text-2xl font-semibold text-gray-800 mb-6">Analysis Results</h3>';
+            
+            // Text results
+            if (data.pred_text && data.pred_text !== "N/A") {
+                const alertClass = getAlertClass(data.pred_text);
+                resultsHTML += `
+                    <div class="mb-6 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <i class="bi bi-file-text text-2xl text-blue-500 mr-3"></i>
+                            <h4 class="text-lg font-medium text-gray-800">Text Analysis</h4>
+                        </div>
+                        <div class="ml-9">
+                            <p class="text-gray-600"><span class="font-semibold">Prediction:</span> 
+                                <span class="inline-block px-2 py-1 rounded ${alertClass}">
+                                    ${formatLabel(data.pred_text)}
+                                </span>
+                            </p>
+                            ${data.sample_text ? `<div class="mt-3 p-3 bg-gray-50 rounded border border-gray-200">
+                                <p class="text-gray-700">${data.sample_text}</p>
+                            </div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Image results
+            if (data.pred_image && data.pred_image !== "N/A") {
+                const alertClass = getAlertClass(data.pred_image);
+                resultsHTML += `
+                    <div class="mb-6 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <i class="bi bi-image text-2xl text-green-500 mr-3"></i>
+                            <h4 class="text-lg font-medium text-gray-800">Image Analysis</h4>
+                        </div>
+                        <div class="ml-9">
+                            <p class="text-gray-600"><span class="font-semibold">Prediction:</span> 
+                                <span class="inline-block px-2 py-1 rounded ${alertClass}">
+                                    ${formatLabel(data.pred_image)}
+                                </span>
+                            </p>
+                            ${data.image_url ? `<div class="mt-3">
+                                <img src="/${data.image_url}" alt="Analyzed Image" class="rounded-lg max-h-64">
+                            </div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Combined results
+            if (data.pred_both && data.pred_both !== "N/A") {
+                const alertClass = getAlertClass(data.pred_both);
+                resultsHTML += `
+                    <div class="mb-6 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                        <div class="flex items-center mb-3">
+                            <i class="bi bi-collection text-2xl text-purple-500 mr-3"></i>
+                            <h4 class="text-lg font-medium text-gray-800">Combined Analysis</h4>
+                        </div>
+                        <div class="ml-9">
+                            <p class="text-gray-600"><span class="font-semibold">Prediction:</span> 
+                                <span class="inline-block px-2 py-1 rounded ${alertClass}">
+                                    ${formatLabel(data.pred_both)}
+                                </span>
+                            </p>
+                            <p class="text-gray-500 text-sm mt-1">(Text + Image analysis combined)</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Video results
+            if (data.pred_video && data.pred_video !== "N/A") {
+                const alertClass = getAlertClass(data.pred_video);
+                let framePredsHTML = '';
+                
+                if (data.video_frame_preds && data.video_frame_preds.length > 0) {
+                    framePredsHTML = '<span class="font-medium">Frame Predictions:</span> ';
+                    data.video_frame_preds.forEach(pred => {
+                        const frameAlertClass = getAlertClass(pred);
+                        framePredsHTML += '<span class="inline-block px-1.5 py-0.5 text-xs rounded ' + frameAlertClass + '">' +
+                            formatLabel(pred) +
+                            '</span>';
+                    });
+                }
+                
+                let downloadHTML = '';
+                if (data.video_url) {
+                    const downloadPath = '/static/' + data.video_url;
+                    downloadHTML = '<a href="' + downloadPath + '" download class="video-control-btn p-2 text-gray-600 hover:text-blue-600">' +
+                        '<i class="bi bi-download"></i> Download' +
+                        '</a>';
+                }
+                
+                let videoPlayerHTML = '';
+                if (data.video_url) {
+                    const videoPath = '/static/' + data.video_url;
+                    videoPlayerHTML = '<div class="mt-4">' +
+                        '<video id="result-video" controls autoplay style="width: 100%; border-radius: 0.5rem; max-height: 400px; background: #000;">' +
+                            '<source src="' + videoPath + '" type="video/mp4">' +
+                            'Your browser does not support the video tag.' +
+                        '</video>' +
+                        '</div>';
+                }
+                
+                let framePredsSection = '';
+                if (framePredsHTML) {
+                    framePredsSection = '<p class="text-sm text-gray-500 mt-2">' + framePredsHTML + '</p>';
+                }
+                
+                resultsHTML += '<div class="mb-6 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">' +
+                    '<div class="flex items-center justify-between mb-3">' +
+                        '<div class="flex items-center">' +
+                            '<i class="bi bi-camera-video text-2xl text-purple-500 mr-3"></i>' +
+                            '<h4 class="text-lg font-medium text-gray-800">Video Analysis</h4>' +
+                        '</div>' +
+                        downloadHTML +
+                    '</div>' +
+                    '<div class="ml-9">' +
+                        '<p class="text-gray-600"><span class="font-semibold">Prediction:</span> ' +
+                            '<span class="inline-block px-2 py-1 rounded ' + alertClass + '">' +
+                                formatLabel(data.pred_video) +
+                            '</span>' +
+                        '</p>' +
+                        framePredsSection +
+                        videoPlayerHTML +
+                    '</div>' +
+                    '</div>';
+            }
+            
+            // AI Report
+            if (data.ai_report) {
+                resultsHTML += `
+                    <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                        <div class="flex items-center mb-3">
+                            <i class="bi bi-robot text-2xl text-blue-500 mr-3"></i>
+                            <h4 class="text-lg font-medium text-gray-800">AI Analysis Report</h4>
+                        </div>
+                        <div class="ml-9 bg-white p-4 rounded border border-gray-200">
+                            <p class="text-gray-700 whitespace-pre-line">${data.ai_report}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            resultsHTML += '</div>';
+            resultsSection.innerHTML = resultsHTML;
+            
+            // Reinitialize video player for the new video
+            initVideoPlayer();
+        }
+        
+        // Helper functions
+        function getAlertClass(prediction) {
+            if (['fight', 'weapon', 'fire'].includes(prediction)) {
+                return 'bg-red-100 text-red-800';
+            } else if (prediction === 'suspicious_activity') {
+                return 'bg-yellow-100 text-yellow-800';
+            }
+            return 'bg-blue-100 text-blue-800';
+        }
+
+        function formatLabel(label) {
+            return label.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        }
+    });
+</script>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+
+<style>
+    /* Custom styles */
+    .aspect-w-16 {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    }
+    
+    .aspect-w-16 > video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .video-play-button {
+        transition: all 0.3s ease;
+        transform: scale(1);
+    }
+    
+    .video-play-button:hover {
+        transform: scale(1.1);
+    }
+    
+    .video-control-btn {
+        transition: color 0.2s ease;
+    }
+    
+    #loading-indicator {
+        backdrop-filter: blur(2px);
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+</style>
+{% if pred_video != "N/A" %}
+<div class="mb-6 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+    <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center">
+            <i class="bi bi-camera-video text-2xl text-purple-500 mr-3"></i>
+            <h4 class="text-lg font-medium text-gray-800">Video Analysis</h4>
+        </div>
+        {% if video_url %}
+        <div class="flex space-x-2">
+            <a href="{{ url_for('static', filename=video_url) }}" download 
+               class="flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                <i class="bi bi-download mr-1"></i> Download
+            </a>
+            <button id="video-fullscreen-btn" class="flex items-center text-sm text-gray-600 hover:text-blue-600">
+                <i class="bi bi-arrows-fullscreen mr-1"></i> Fullscreen
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="ml-9">
+        <!-- Prediction Badge -->
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="font-semibold text-gray-600">Overall Prediction:</span>
+            <span class="inline-block px-2 py-1 rounded 
+                {% if pred_video in ['fight', 'weapon', 'fire'] %}bg-red-100 text-red-800
+                {% elif pred_video == 'suspicious_activity' %}bg-yellow-100 text-yellow-800
+                {% else %}bg-blue-100 text-blue-800{% endif %}">
+                {{ pred_video|replace('_', ' ')|title }}
+            </span>
+        </div>
+        
+        <!-- Key Frames Grid -->
+        {% if video_key_frames %}
+        <div class="mb-4">
+            <h5 class="text-md font-medium text-gray-700 mb-2">Key Frames</h5>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                {% for frame in video_key_frames %}
+                <div class="border rounded-lg overflow-hidden relative group">
+                    <img src="{{ url_for('static', filename=frame.image_path) }}" 
+                         alt="Key frame {{ loop.index }}" 
+                         class="w-full h-24 object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-1 text-xs">
+                        <span class="font-medium">{{ frame.time }}</span>
+                        <span class="float-right {{ 
+                            'text-red-300' if frame.prediction in ['fight', 'weapon', 'fire'] else
+                            'text-yellow-300' if frame.prediction == 'suspicious_activity' else
+                            'text-blue-300'
+                        }}">
+                            {{ frame.prediction|replace('_', ' ')|title }}
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Video Player Section for uploaded videos -->
+        {% if video_url %}
+        <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Processed Video Player</h3>
+            <div class="relative bg-black rounded-lg overflow-hidden">
+                <video id="result-video" controls style="width: 100%; display: block;">
+                    <source src="{{ url_for('static', filename=video_url) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">
+                Video file: <code>{{ video_url }}</code>
+            </p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<script>
+    // Enhanced Video Handling
+document.addEventListener('DOMContentLoaded', function() {
+    // Video Preview Handling
+    const videoInput = document.getElementById('video_input');
+    const videoPreview = document.getElementById('video-preview');
+    const videoPlayer = document.getElementById('video-preview-player');
+    
+    if (videoInput) {
+        videoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                videoPlayer.src = url;
+                videoPreview.classList.remove('hidden');
+                
+                // Set up video metadata
+                videoPlayer.onloadedmetadata = function() {
+                    const videoInfoEl = document.getElementById('video-info');
+                    if (videoInfoEl) {
+                        videoInfoEl.textContent = 
+                            `${file.name} • ${formatDuration(videoPlayer.duration)} • ${formatFileSize(file.size)}`;
+                    }
+                };
+                
+                // Video playback handling (removed non-existent placeholder element reference)
+            }
+        });
+    }
+
+    // Main Video Player Controls
+    const mainVideo = document.getElementById('result-video');
+    if (mainVideo) {
+        // Fullscreen functionality
+        const fullscreenBtn = document.getElementById('video-fullscreen-btn');
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener('click', function() {
+                if (mainVideo.requestFullscreen) {
+                    mainVideo.requestFullscreen();
+                } else if (mainVideo.webkitRequestFullscreen) {
+                    mainVideo.webkitRequestFullscreen();
+                }
+            });
+        }
+
+        // Update progress bar
+        mainVideo.addEventListener('timeupdate', function() {
+            const progressBar = document.getElementById('video-progress');
+            const currentTimeEl = document.getElementById('video-current-time');
+            
+            if (progressBar) {
+                const progress = (mainVideo.currentTime / mainVideo.duration) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            if (currentTimeEl) {
+                currentTimeEl.textContent = formatDuration(mainVideo.currentTime);
+            }
+        });
+
+        // Play/pause overlay
+        const overlay = document.getElementById('video-controls-overlay');
+        const playBtn = document.getElementById('video-play-btn');
+        
+        if (playBtn) {
+            playBtn.addEventListener('click', function() {
+                if (mainVideo.paused) {
+                    mainVideo.play();
+                    if (overlay) overlay.classList.add('opacity-0');
+                } else {
+                    mainVideo.pause();
+                }
+            });
+        }
+        
+        mainVideo.addEventListener('play', function() {
+            if (overlay) overlay.classList.add('opacity-0');
+        });
+        
+        mainVideo.addEventListener('pause', function() {
+            if (!mainVideo.ended && overlay) {
+                overlay.classList.remove('opacity-0');
+            }
+        });
+    }
+});
+
+// Helper functions
+function skipVideo(seconds) {
+    const video = document.getElementById('result-video') || 
+                 document.getElementById('video-preview-player');
+    if (video) {
+        video.currentTime += seconds;
+    }
+}
+    </script>
+{% endif %}
+{% endblock %}

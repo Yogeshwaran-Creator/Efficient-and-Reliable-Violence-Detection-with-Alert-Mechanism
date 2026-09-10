@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multimodal Inference & Video Analysis</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    .container { max-width: 800px; margin: auto; }
+    label { display: block; margin-top: 1em; }
+    input, textarea, button { width: 100%; padding: 0.5em; margin-top: 0.5em; }
+    #results { margin-top: 2em; }
+    video { max-width: 100%; margin-top: 1em; }
+    pre { background: #f4f4f4; padding: 1em; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Multimodal Inference & Video Analysis</h1>
+    <form id="inferenceForm" enctype="multipart/form-data" method="POST" action="/">
+      <label for="text_input">Input Text:</label>
+      <textarea id="text_input" name="text_input" rows="3" placeholder="Enter your text here"></textarea>
+      
+      <label for="image_input">Upload Image:</label>
+      <input type="file" id="image_input" name="image_input" accept="image/*">
+      
+      <label for="video_input">Upload Video:</label>
+      <input type="file" id="video_input" name="video_input" accept="video/*">
+      
+      <button type="submit">Submit for Inference</button>
+    </form>
+    
+    <div id="results" style="display:block;">
+      <h2>Inference Results</h2>
+      <p><strong>Text Only:</strong> <span id="pred_text">{{ pred_text or "" }}</span></p>
+      <p><strong>Image Only:</strong> <span id="pred_image">{{ pred_image or "" }}</span></p>
+      <p><strong>Combined (Text + Image):</strong> <span id="pred_both">{{ pred_both or "" }}</span></p>
+      <p><strong>Video Only:</strong> <span id="pred_video">{{ pred_video or "" }}</span></p>
+      <p><strong>Video Frame Predictions:</strong> <span id="video_frame_preds">{{ video_frame_preds or "" }}</span></p>
+      
+      <h3>AI-Generated Report</h3>
+      <pre id="ai_report">{{ ai_report or "" }}</pre>
+      
+      <!-- Direct video playback using the HTML video element -->
+      {% if video_url and video_url != "N/A" %}
+      <div id="video_section">
+        <h3>Processed Video with Detections</h3>
+        <video controls width="100%">
+          <source src="{{ video_url }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>

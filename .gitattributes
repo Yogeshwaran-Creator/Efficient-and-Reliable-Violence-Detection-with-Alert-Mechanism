@@ -1,0 +1,2 @@
+TRAIN/multimodal_model.pth filter=lfs diff=lfs merge=lfs -text
+WEB_APP/multimodal_model.pth filter=lfs diff=lfs merge=lfs -text

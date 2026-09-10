@@ -1,0 +1,497 @@
+label,crime
+accident,A cyclist was hit by a speeding car.
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,A pedestrian was struck by a motorcycle while crossing the road.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,A child slipped and fell in the playground.
+fight,A road rage incident led to a street fight.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,Spectators broke into a fight at a football match.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A car lost control and crashed into a pole.
+breaking,A shop was looted during a riot.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,Security reported an unknown vehicle parked outside a bank overnight.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,Two vehicles collided at an intersection.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,Spectators broke into a fight at a football match.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,A child slipped and fell in the playground.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,A car lost control and crashed into a pole.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,A cyclist was hit by a speeding car.
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,Spectators broke into a fight at a football match.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A pedestrian was struck by a motorcycle while crossing the road.
+breaking,A shop was looted during a riot.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,A road rage incident led to a street fight.
+fire,Firefighters were called to a burning warehouse.
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A car lost control and crashed into a pole.
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,A child slipped and fell in the playground.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,A car lost control and crashed into a pole.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,Security reported an unknown vehicle parked outside a bank overnight.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,Two vehicles collided at an intersection.
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,Firefighters were called to a burning warehouse.
+suspicious_activity,Security reported an unknown vehicle parked outside a bank overnight.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A cyclist was hit by a speeding car.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A pedestrian was struck by a motorcycle while crossing the road.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,Spectators broke into a fight at a football match.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,Two vehicles collided at an intersection.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,A pedestrian was struck by a motorcycle while crossing the road.
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,A cyclist was hit by a speeding car.
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,A delivery worker fell off his bicycle while riding on a slippery road.
+fight,A road rage incident led to a street fight.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A car lost control and crashed into a pole.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,Two vehicles collided at an intersection.
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,Two vehicles collided at an intersection.
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,A road rage incident led to a street fight.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,A pedestrian was struck by a motorcycle while crossing the road.
+breaking,A shop was looted during a riot.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,A cyclist was hit by a speeding car.
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,A pedestrian was struck by a motorcycle while crossing the road.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,A delivery worker fell off his bicycle while riding on a slippery road.
+fight,Spectators broke into a fight at a football match.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,Security reported an unknown vehicle parked outside a bank overnight.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,A pedestrian was struck by a motorcycle while crossing the road.
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,A cyclist was hit by a speeding car.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,A child slipped and fell in the playground.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A cyclist was hit by a speeding car.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A car lost control and crashed into a pole.
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A road rage incident led to a street fight.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,Two vehicles collided at an intersection.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A shop was looted during a riot.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,Spectators broke into a fight at a football match.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,Firefighters were called to a burning warehouse.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,A pedestrian was struck by a motorcycle while crossing the road.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,Two vehicles collided at an intersection.
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,A road rage incident led to a street fight.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,Two vehicles collided at an intersection.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,A car lost control and crashed into a pole.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,A child slipped and fell in the playground.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,Firefighters were called to a burning warehouse.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,A car lost control and crashed into a pole.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,A cyclist was hit by a speeding car.
+breaking,A shop was looted during a riot.
+Fall-person,A delivery worker fell off his bicycle while riding on a slippery road.
+fight,Spectators broke into a fight at a football match.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,A cyclist was hit by a speeding car.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,A pedestrian was struck by a motorcycle while crossing the road.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,A delivery worker fell off his bicycle while riding on a slippery road.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A cyclist was hit by a speeding car.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,A delivery worker fell off his bicycle while riding on a slippery road.
+fight,A workplace dispute resulted in a fistfight between colleagues.
+fire,Firefighters were called to a burning warehouse.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,A child slipped and fell in the playground.
+fight,Spectators broke into a fight at a football match.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,A cyclist was hit by a speeding car.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,Security reported an unknown vehicle parked outside a bank overnight.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,A car lost control and crashed into a pole.
+breaking,A shop was looted during a riot.
+Fall-person,A child slipped and fell in the playground.
+fight,Spectators broke into a fight at a football match.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,Two vehicles collided at an intersection.
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,A road rage incident led to a street fight.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,Security reported an unknown vehicle parked outside a bank overnight.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,A car lost control and crashed into a pole.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,A delivery worker fell off his bicycle while riding on a slippery road.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,Firefighters were called to a burning warehouse.
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A shoplifter attempted to steal electronics from a store.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,A delivery worker fell off his bicycle while riding on a slippery road.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A car engine burst into flames in a parking lot.
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A cyclist was hit by a speeding car.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,A delivery worker fell off his bicycle while riding on a slippery road.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,A cyclist was hit by a speeding car.
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,A child slipped and fell in the playground.
+fight,Spectators broke into a fight at a football match.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,A car lost control and crashed into a pole.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,A child slipped and fell in the playground.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A person was arrested for carrying an illegal firearm.
+accident,Two vehicles collided at an intersection.
+breaking,A suspect was caught breaking into an ATM.
+Fall-person,An elderly woman fell on an escalator in a subway station.
+fight,A road rage incident led to a street fight.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A handbag was snatched from a diner while the owner was distracted.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,A car lost control and crashed into a pole.
+breaking,A masked intruder broke into a house at midnight.
+Fall-person,A delivery worker fell off his bicycle while riding on a slippery road.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,"A factory fire spread rapidly, requiring emergency response."
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A gunshot was heard in a residential neighborhood.
+accident,Two vehicles collided at an intersection.
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A road rage incident led to a street fight.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A man was seen following a woman suspiciously.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A cyclist was hit by a speeding car.
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,A garbage bin caught fire due to discarded cigarette butts.
+suspicious_activity,A stranger was found tampering with a building's surveillance system.
+thief,A stolen bike was found abandoned in an alley.
+weapon,A school was put on lockdown after reports of a weapon sighting.
+accident,A pedestrian was struck by a motorcycle while crossing the road.
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,Two teenagers were seen fighting in a school hallway.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A group was seen brandishing weapons during a confrontation.
+accident,A car lost control and crashed into a pole.
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,A child slipped and fell in the playground.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,A wildfire broke out near a residential area.
+suspicious_activity,A group was caught attempting to bypass security at an event.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,Security cameras captured a break-in at a jewelry store.
+Fall-person,An office worker tripped over loose wiring and fell.
+fight,Spectators broke into a fight at a football match.
+fire,Firefighters were called to a burning warehouse.
+suspicious_activity,A person was spotted sneaking around a closed business.
+thief,A pickpocket was caught in a crowded train station.
+weapon,A suspect was found with a concealed knife at a checkpoint.
+accident,"A truck overturned on the highway, blocking traffic."
+breaking,A burglar was seen climbing into a second-floor window.
+Fall-person,A person collapsed due to dizziness in a shopping mall.
+fight,A verbal argument in a restaurant turned into a physical brawl.
+fire,Firefighters were called to a burning warehouse.
+suspicious_activity,Security reported an unknown vehicle parked outside a bank overnight.
+thief,A thief broke into a parked car and stole valuables.
+weapon,A person was arrested for carrying an illegal firearm.

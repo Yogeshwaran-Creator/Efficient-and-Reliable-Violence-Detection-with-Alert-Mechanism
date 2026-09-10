@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="text-3xl font-bold text-center text-blue-600 my-6">Admin Dashboard</h2>
+
+<div class="overflow-x-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+    <table class="w-full table-auto border-collapse border border-gray-700 text-white">
+        <thead class="bg-blue-500 text-white">
+            <tr>
+                <th class="p-3 border border-gray-700">ID</th>
+                <th class="p-3 border border-gray-700">Username</th>
+                <th class="p-3 border border-gray-700">Email</th>
+                <th class="p-3 border border-gray-700">Full Name</th>
+                <th class="p-3 border border-gray-700">Admin</th>
+                <th class="p-3 border border-gray-700">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr class="bg-gray-700 hover:bg-gray-600 transition">
+                <td class="p-3 border border-gray-700">{{ user.id }}</td>
+                <td class="p-3 border border-gray-700 flex items-center gap-2">
+                    <i class="bi bi-person-circle text-xl text-blue-400"></i> {{ user.username }}
+                </td>
+                <td class="p-3 border border-gray-700">{{ user.email }}</td>
+                <td class="p-3 border border-gray-700">{{ user.full_name or '' }}</td>
+                <td class="p-3 border border-gray-700 text-center">
+                    {% if user.is_admin %}
+                        <span class="text-green-400 font-bold">Yes</span>
+                    {% else %}
+                        <span class="text-red-400 font-bold">No</span>
+                    {% endif %}
+                </td>
+                <td class="p-3 border border-gray-700 text-center">
+                    {% if not user.is_admin %}
+                        <form action="{{ url_for('make_admin', user_id=user.id) }}" method="POST" class="inline">
+                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition flex items-center gap-2">
+                                <i class="bi bi-person-check"></i> Make Admin
+                            </button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
